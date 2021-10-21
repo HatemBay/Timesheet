@@ -4,14 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import tn.esprit.spring.entities.Contrat;
 import tn.esprit.spring.entities.Employe;
@@ -25,7 +18,7 @@ import tn.esprit.spring.services.ITimesheetService;
 @RestController
 public class RestControlEmploye {
 
-	
+
 	@Autowired
 	IEmployeService iemployeservice;
 	@Autowired
@@ -35,11 +28,13 @@ public class RestControlEmploye {
 
 	
 	@PostMapping("/ajouterEmployer")
-	public Employe ajouterEmploye(@RequestBody Employe employe)
+	public Employe ajouterEmploye( Employe employe)
 	{
 		iemployeservice.ajouterEmploye(employe);
 		return employe;
 	}
+
+
 	
 	// Modifier email : http://localhost:8081/SpringMVC/servlet/modifyEmail/1/newemail
 	@PutMapping(value = "/modifyEmail/{id}/{newemail}") 
@@ -63,7 +58,6 @@ public class RestControlEmploye {
 	}
 
 	// http://localhost:8081/SpringMVC/servlet/ajouterContrat
-	//{"reference":6,"dateDebut":"2020-03-01","salaire":2000,"typeContrat":"CDD"}
 	@PostMapping("/ajouterContrat")
 	@ResponseBody
 	public int ajouterContrat(@RequestBody Contrat contrat) {

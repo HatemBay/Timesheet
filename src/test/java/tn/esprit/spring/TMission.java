@@ -54,7 +54,7 @@ public class TMission {
 	
 	
 	@Test
-	public void testCreateMission() {
+	public void CreateMission() {
 	
 		  Mission m = es.ajouterMission(new Mission("mission2","description1"));
 		 assertThat(m.getId()).isGreaterThan(0);
@@ -63,18 +63,7 @@ public class TMission {
 	
 	}
 
-	@Test
-	public void verifNameMission() {
-		  Mission mission = es.ajouterMission(new Mission("mission1","description1"));
-	
-		
-		missionRepository.delete(mission);
 
-	}
-	
-
-	
-	
 	@Test
 	public void verifTaille() {
 		List<Mission> missions = es.getAllMission();
