@@ -67,7 +67,7 @@ public class DepartementTest {
 	public void CreateDep() {
 	
 		Departement dep = esx.ajouterDepartement(new Departement("dep"));
-		 assertThat(dep.getId()).isGreaterThan(0);
+		 assertThat(dep.getId()).isPositive();
 		 depRepository.delete(dep);
 		
 	
