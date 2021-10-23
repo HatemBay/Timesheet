@@ -70,4 +70,5 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 		return entrepriseRepoistory.findById(entrepriseId).get();	
 	}
 
+
 }
