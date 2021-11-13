@@ -29,7 +29,7 @@ public class EmployeeTest {
 	private static final String NOM = "BenMansour";
 	private static final String PRENOM = "Ahmed";
 	private static final String EMAIL = "hmedM@esprit.tn";
-
+	
 	@Test
 	public void verifTaille() {
 		List<Employe> employes = es.getAllEmployes();
