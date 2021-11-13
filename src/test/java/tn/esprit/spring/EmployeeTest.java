@@ -26,9 +26,9 @@ public class EmployeeTest {
 	EmployeRepository er;
 
 	private static final Logger l = LogManager.getLogger(EmployeeTest.class);
-	private static final String NOM = "BenMansour"; 
-	private static final String PRENOM = "Ahmed"; 
-	private static final String EMAIL = "hmedM@esprit.tn"; 
+	private static final String NOM = "BenMansour";
+	private static final String PRENOM = "Ahmed";
+	private static final String EMAIL = "hmedM@esprit.tn";
 
 	@Test
 	public void verifTaille() {
@@ -59,7 +59,7 @@ public class EmployeeTest {
 		assertEquals(i + 1, es.getNombreEmployeJPQL());
 		er.delete(emp);
 	}
-	
+
 	@Test
 	public void testModif() {
 		Employe emp = new Employe();
@@ -69,10 +69,10 @@ public class EmployeeTest {
 		emp = es.ajouterEmploye(emp);
 		emp.setPrenom("abbas");
 		emp = er.save(emp);
-		assertEquals("abbas" ,emp.getPrenom());
+		assertEquals("abbas", emp.getPrenom());
 		er.delete(emp);
 	}
-	
+
 	@Test
 	public void testSuppr() {
 		Employe emp = new Employe();
@@ -83,6 +83,6 @@ public class EmployeeTest {
 		long i = es.getNombreEmployeJPQL();
 		er.delete(emp);
 		assertEquals(i - 1, es.getNombreEmployeJPQL());
-		
+
 	}
 }
