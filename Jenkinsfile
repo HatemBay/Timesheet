@@ -9,9 +9,9 @@ pipeline {
                 url: 'https://github.com/HatemBay/Timesheet';
             }
         }
-        stage('Build'){
+        stage('Build, Testing'){
         steps {
-            bat """mvn clean install -Dmaven.test.skip=true"""
+            bat """mvn clean install"""
         }    
         }
         
@@ -23,7 +23,7 @@ pipeline {
         
         stage('Nexus'){
             steps {
-                bat """mvn clean package deploy:deploy-file -DgroupId=tn.esprit -DartifactId=Timesheet -Dversion=0.0.3 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=target/Timesheet-0.0.3.jar -Dmaven.test.skip=true"""
+                bat """mvn clean package deploy:deploy-file -DgroupId=tn.esprit -DartifactId=Timesheet -Dversion=0.0.3 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=target/Timesheet-0.0.3.jar"""
             }
         }
     }
