@@ -10,7 +10,7 @@ pipeline {
     stages {
 		stage('Cloning our Git') {
 			steps { 
-				git 'https://github.com/HatemBay/Timesheet.git’
+				git 'https://github.com/HatemBay/Timesheet.git'
 			}
 		}
 		stage('Building our image') {
