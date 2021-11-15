@@ -1,7 +1,7 @@
 pipeline {
 	environment
 	{
-		registry = "hatembayoudh/Timesheet"
+		registry = "hatembayoudh/timesheet"
 		registryCredential= 'dockerHub'
 		dockerImage = ''
 	}
@@ -16,7 +16,7 @@ pipeline {
 		stage('Building our image') {
 			steps { 
 				script { 
-					dockerImage= docker.build registry + ":$BUILD_NUMBER" 
+					dockerImage= docker.build registry + ":0.0.1" 
 				} 
 			}
 		}
@@ -29,7 +29,7 @@ pipeline {
 		}
 		stage('Cleaning up') {
 			steps { 
-				bat "docker rmi $registry:$BUILD_NUMBER" 
+				bat "docker rmi $registry:0.0.1" 
 			}
 		}
         stage('Checkout GIT') {
