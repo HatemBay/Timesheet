@@ -8,15 +8,17 @@ pipeline {
     agent any
 
     stages {
-		stage('Cloning our Git') {
-			steps { 
-				git 'https://github.com/HatemBay/Timesheet.git'
-			}
-		}
+		stage('Checkout GIT') {
+            steps {
+                echo 'Pulling...';
+                git branch: 'hatem',
+                url: 'https://github.com/HatemBay/Timesheet';
+            }
+        }
 		stage('Building our image') {
 			steps { 
 				script { 
-					dockerImage= docker.build registry + ":0.0.1" 
+					dockerImage = hatembayoudh/timesheetspringimage + ":0.0.1" 
 				} 
 			}
 		}
@@ -32,13 +34,6 @@ pipeline {
 				bat "docker rmi $registry:0.0.1" 
 			}
 		}
-        stage('Checkout GIT') {
-            steps {
-                echo 'Pulling...';
-                git branch: 'hatem',
-                url: 'https://github.com/HatemBay/Timesheet';
-            }
-        }
         stage('Build, Testing'){
         	steps {
            		bat """mvn clean install"""
