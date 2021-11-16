@@ -18,7 +18,7 @@ pipeline {
 		stage('Building our image') {
 			steps { 
 				script { 
-					dockerImage = docker.build + "hatembayoudh/springbootimage" 
+					dockerImage = docker.build registry
 				} 
 			}
 		}
