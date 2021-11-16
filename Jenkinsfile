@@ -40,9 +40,9 @@ pipeline {
             }
         }
         stage('Build, Testing'){
-        steps {
-            bat """mvn clean install"""
-        }    
+        	steps {
+           		bat """mvn clean install"""
+        	}    
         }
         
         stage('Sonar'){
