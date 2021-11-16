@@ -31,7 +31,7 @@ pipeline {
 		}
 		stage('Cleaning up') {
 			steps { 
-				bat "docker rmi $hatembayoudh/springbootimage:$BUILD_NUMBER" 
+				bat "docker rmi $registry:$BUILD_NUMBER" 
 			}
 		}
         stage('Build, Testing'){
