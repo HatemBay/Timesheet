@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import tn.esprit.spring.entities.Mission;
-import tn.esprit.spring.repository.EmployeRepository;
 import tn.esprit.spring.repository.MissionRepository;
 import tn.esprit.spring.services.MissionServiceImpl;
 
@@ -27,8 +26,7 @@ public class TMission {
 	MissionServiceImpl es; 
 	@Autowired
 	MissionRepository missionRepository; 
-	@Autowired
-	EmployeRepository  emprepo; 
+	
 	
 	
 	private static final Logger l = LogManager.getLogger(TMission.class);
