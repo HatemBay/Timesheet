@@ -18,20 +18,20 @@ pipeline {
 		stage('Building our image') {
 			steps { 
 				script { 
-					dockerImage = hatembayoudh/timesheetspringimage + ":0.0.1" 
+					dockerImage = docker.build + "hatembayoudh/springbootimage" 
 				} 
 			}
 		}
 		stage('Deploy our image') {
 			steps { 
 				script { 
-					docker.withRegistry( '', registryCredential) { dockerImage.push() } 
+					docker.withRegistry( '', registryCredential) { dockerImage.push("$BUILD_NUMBER") } 
 					} 
 				}
 		}
 		stage('Cleaning up') {
 			steps { 
-				bat "docker rmi $registry:0.0.1" 
+				bat "docker rmi $hatembayoudh/springbootimage:$BUILD_NUMBER" 
 			}
 		}
         stage('Build, Testing'){
