@@ -15,28 +15,7 @@ pipeline {
                 url: 'https://github.com/HatemBay/Timesheet';
             }
         }
-		stage('Building our image') {
-			steps { 
-				script { 
-					echo 'Building image...';
-					dockerImage = docker.build registry
-				} 
-			}
-		}
-		stage('Deploy our image') {
-			steps { 
-				script { 
-					echo 'Deploying image...';
-					docker.withRegistry( '', registryCredential) { dockerImage.push("$BUILD_NUMBER") } 
-					} 
-				}
-		}
-		stage('Cleaning up') {
-			steps { 
-				echo 'Cleaning up...';
-				bat "docker rmi $registry:$BUILD_NUMBER" 
-			}
-		}
+
         stage('Build, Testing'){
         	steps {
         		echo 'Building and testing...';
@@ -57,6 +36,31 @@ pipeline {
                 bat """mvn clean package deploy:deploy-file -DgroupId=tn.esprit -DartifactId=Timesheet -Dversion=0.0.3 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://localhost:8081/repository/maven-releases/ -Dfile=target/Timesheet-0.0.3.jar"""
             }
         }
+
+		stage('Building our image') {
+			steps { 
+				script { 
+					echo 'Building image...';
+					dockerImage = docker.build registry
+				} 
+			}
+		}
+
+		stage('Deploy our image') {
+			steps { 
+				script { 
+					echo 'Deploying image...';
+					docker.withRegistry( '', registryCredential) { dockerImage.push("$BUILD_NUMBER") } 
+					} 
+				}
+		}
+
+		stage('Cleaning up') {
+			steps { 
+				echo 'Cleaning up...';
+				bat "docker rmi $registry:$BUILD_NUMBER" 
+			}
+		}
     }
     
     post {
