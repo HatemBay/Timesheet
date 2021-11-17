@@ -61,6 +61,13 @@ pipeline {
 				bat "docker rmi $registry:$BUILD_NUMBER" 
 			}
 		}
+
+		stage('Running docker-compose') {
+			steps { 
+				echo 'Establishing communication between app and database...';
+				bat "docker-compose up -d"
+			}
+		}
     }
     
     post {
