@@ -23,6 +23,11 @@ pipeline {
         	}    
         }
         
+        stage('Test Junit') {
+            steps {
+                bat """mvn test"""
+            }
+        }
         stage('Sonar'){
             steps {
             	echo 'Sonar';
@@ -46,7 +51,7 @@ pipeline {
 			}
 		}
 
-		stage('Deploy our image') {
+		stage('Deploy of the image') {
 			steps { 
 				script { 
 					echo 'Deploying image...';
