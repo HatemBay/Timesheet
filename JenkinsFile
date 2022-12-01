@@ -1,33 +1,27 @@
 pipeline {
     agent any
-
     stages {
-		stage('Checkout GIT') {
+        stage('git repo & clean') {
             steps {
-                echo 'Pulling...';
-                git branch: 'Raef',
-                url: 'https://github.com/HatemBay/Timesheet';
+               bat "rmdir  /s /q TicketBookingServiceJunitTesting"
+                bat "git clone https://github.com/HatemBay/Timesheet.git"
+                bat "mvn clean -f project_pipeline"
             }
         }
-
-        stage('Build, Testing'){
-        	steps {
-        		echo 'Building and testing...';
-           		bat """mvn clean install"""
-        	}    
-        }
-        
-        stage('Test Junit') {
+        stage('install') {
             steps {
-                bat """mvn test"""
+                bat "mvn install -f project_pipeline"
             }
         }
-   
-		
-
-		
+        stage('test') {
+            steps {
+                bat "mvn test -f project_pipeline"
+            }
+        }
+        stage('package') {
+            steps {
+                bat "mvn package -f project_pipeline"
+            }
+        }
     }
-    
-  
 }
-
