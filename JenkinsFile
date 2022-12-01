@@ -10,12 +10,12 @@ pipeline {
         }
         stage('install') {
             steps {
-                bat "mvn install -f project_pipeline"
+                bat"""mvn clean install"""
             }
         }
         stage('test') {
             steps {
-                bat "mvn test -f project_pipeline"
+                bat"""mvn test"""
             }
         }
         stage('package') {
