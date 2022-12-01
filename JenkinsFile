@@ -3,14 +3,14 @@ pipeline {
     stages {
         stage('git repo & clean') {
             steps {
-            //    bat "rmdir  /s /q TicketBookingServiceJunitTesting"
-                bat "git clone https://github.com/HatemBay/Timesheet.git"
-                bat "mvn clean -f project_pipeline"
+            //    ./ "rmdir  /s /q TicketBookingServiceJunitTesting"
+                ./ "git clone https://github.com/HatemBay/Timesheet.git"
+                ./ "mvn clean -f project_pipeline"
             }
         }
         stage('install') {
             steps {
-                ./"""mvn clean install"""
+                ./ """mvn clean install"""
             }
         }
         stage('test') {
