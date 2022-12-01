@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('git repo & clean') {
             steps {
-               "rmdir  /s /q TicketBookingServiceJunitTesting"
+            //    bat "rmdir  /s /q TicketBookingServiceJunitTesting"
                 bat "git clone https://github.com/HatemBay/Timesheet.git"
                 bat "mvn clean -f project_pipeline"
             }
